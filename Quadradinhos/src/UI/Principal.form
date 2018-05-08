@@ -291,7 +291,7 @@
         <Component class="javax.swing.JLabel" name="label9">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="18" style="1"/>
@@ -303,6 +303,9 @@
               </Border>
             </Property>
             <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[17, 27]"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -352,6 +355,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Embaralhar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_embaralharActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="label_embaralhar">
           <Properties>
@@ -366,7 +372,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Ordenar"/>
+            <TitledBorder title="Resolver"/>
           </Border>
         </Property>
       </Properties>
@@ -376,11 +382,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jRadioButton2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jRadioButton3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jRadioButton4" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jRadioButton2" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jRadioButton3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jRadioButton4" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -397,6 +404,8 @@
                   <Component id="jRadioButton3" min="-2" pref="22" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jRadioButton4" min="-2" pref="22" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -405,23 +414,43 @@
       <SubComponents>
         <Component class="javax.swing.JRadioButton" name="jRadioButton1">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="rb_grupo1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Random"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButton2">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="rb_grupo1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Heuristica 1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButton3">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="rb_grupo1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Heuristica 2"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButton4">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="rb_grupo1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Heuristica 3"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Resolver"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

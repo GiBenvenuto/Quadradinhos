@@ -5,15 +5,21 @@
  */
 package Classes;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Gi
  */
-public class Quadradinho {
+public class Quadradinho implements Comparator<Quadradinho>{
     private int num;
     private int posI;
     private int posJ;
     private int dist;
+    
+    public Quadradinho (){
+        
+    }
 
     public Quadradinho(int num, int posI, int posJ) {
         this.num = num;
@@ -46,17 +52,10 @@ public class Quadradinho {
         this.posJ = posJ;
     }
 
-    public int getDist() {
-        return calculaDist();
-    }
-
+   
     public void setDist(int dist) {
         this.dist = dist;
     }
-    
-    
-    
-
     
     public int calculaDist(){
         int posFI = this.num / 3;
@@ -66,6 +65,11 @@ public class Quadradinho {
         this.dist = Math.abs(posFI - posI) + Math.abs(posFJ - posJ);        
         
         return dist;
+    }
+
+    @Override
+    public int compare(Quadradinho o1, Quadradinho o2) {
+        return (o1.calculaDist() - o2.calculaDist());
     }
     
     

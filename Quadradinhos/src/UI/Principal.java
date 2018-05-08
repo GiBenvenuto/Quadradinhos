@@ -5,17 +5,26 @@
  */
 package UI;
 
+import Classes.Jogo;
+import java.awt.Color;
+import java.awt.Point;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Foltran
  */
 public class Principal extends javax.swing.JFrame {
 
+    private Jogo jg;
+
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        this.jg = new Jogo();
     }
 
     /**
@@ -47,6 +56,7 @@ public class Principal extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -119,11 +129,12 @@ public class Principal extends javax.swing.JFrame {
         label8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         label8.setOpaque(true);
 
-        label9.setBackground(new java.awt.Color(0, 0, 0));
+        label9.setBackground(new java.awt.Color(153, 153, 153));
         label9.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         label9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         label9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        label9.setPreferredSize(new java.awt.Dimension(17, 27));
 
         javax.swing.GroupLayout panel_puzzleLayout = new javax.swing.GroupLayout(panel_puzzle);
         panel_puzzle.setLayout(panel_puzzleLayout);
@@ -180,6 +191,11 @@ public class Principal extends javax.swing.JFrame {
         panel_embaralhar.setBorder(javax.swing.BorderFactory.createTitledBorder("Embaralhar"));
 
         button_embaralhar.setText("Embaralhar");
+        button_embaralhar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_embaralharActionPerformed(evt);
+            }
+        });
 
         label_embaralhar.setText("Qtd. de Movimentos:");
 
@@ -209,15 +225,26 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panel_ordenar.setBorder(javax.swing.BorderFactory.createTitledBorder("Ordenar"));
+        panel_ordenar.setBorder(javax.swing.BorderFactory.createTitledBorder("Resolver"));
 
+        rb_grupo1.add(jRadioButton1);
         jRadioButton1.setText("Random");
 
+        rb_grupo1.add(jRadioButton2);
         jRadioButton2.setText("Heuristica 1");
 
+        rb_grupo1.add(jRadioButton3);
         jRadioButton3.setText("Heuristica 2");
 
+        rb_grupo1.add(jRadioButton4);
         jRadioButton4.setText("Heuristica 3");
+
+        jButton1.setText("Resolver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_ordenarLayout = new javax.swing.GroupLayout(panel_ordenar);
         panel_ordenar.setLayout(panel_ordenarLayout);
@@ -225,11 +252,12 @@ public class Principal extends javax.swing.JFrame {
             panel_ordenarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_ordenarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_ordenarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panel_ordenarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
+                    .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jRadioButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_ordenarLayout.setVerticalGroup(
@@ -243,6 +271,8 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -270,8 +300,89 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        panel_ordenar.getAccessibleContext().setAccessibleName("Resolver");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void button_embaralharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_embaralharActionPerformed
+        ArrayList<Integer> trocas;
+        int passos = Integer.parseInt(this.input_embaralhar.getText());
+        trocas = this.jg.embaralhar(passos);
+        animacao(trocas);
+    }//GEN-LAST:event_button_embaralharActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ArrayList<Integer> trocas = null;
+
+        if (this.jRadioButton1.isSelected()) {
+            trocas = this.jg.resolverAleatorio();
+        }else if(this.jRadioButton2.isSelected()){
+            trocas = this.jg.heuristicaNivel1();
+        }
+        animacao(trocas);
+        JOptionPane.showMessageDialog(null, "Foram realizados " + trocas.size() + " passos");
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void animacao(ArrayList<Integer> trocas) {
+
+        Point p;
+        for (Integer t : trocas) {
+
+            switch ((t + 1)) {
+
+                case 1:
+                    p = this.label1.getLocation();
+                    this.label1.setLocation(this.label9.getLocation());
+                    this.label9.setLocation(p);
+                    break;
+
+                case 2:
+                    p = this.label2.getLocation();
+                    this.label2.setLocation(this.label9.getLocation());
+                    this.label9.setLocation(p);
+                    break;
+
+                case 3:
+                    p = this.label3.getLocation();
+                    this.label3.setLocation(this.label9.getLocation());
+                    this.label9.setLocation(p);
+                    break;
+
+                case 4:
+                    p = this.label4.getLocation();
+                    this.label4.setLocation(this.label9.getLocation());
+                    this.label9.setLocation(p);
+                    break;
+
+                case 5:
+                    p = this.label5.getLocation();
+                    this.label5.setLocation(this.label9.getLocation());
+                    this.label9.setLocation(p);
+                    break;
+
+                case 6:
+                    p = this.label6.getLocation();
+                    this.label6.setLocation(this.label9.getLocation());
+                    this.label9.setLocation(p);
+                    break;
+
+                case 7:
+                    p = this.label7.getLocation();
+                    this.label7.setLocation(this.label9.getLocation());
+                    this.label9.setLocation(p);
+                    break;
+
+                case 8:
+                    p = this.label8.getLocation();
+                    this.label8.setLocation(this.label9.getLocation());
+                    this.label9.setLocation(p);
+                    break;
+
+            }//switch
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -311,6 +422,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_embaralhar;
     private javax.swing.JTextField input_embaralhar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
