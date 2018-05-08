@@ -5,12 +5,16 @@
  */
 package Classes;
 
+import UI.Principal;
+
 /**
  *
  * @author Gi
  */
-public class Principal {
+public class Main {
     public static void main(String[] args) {
+        Principal p = new Principal();
+        p.setVisible(true);
         
     }
 }
