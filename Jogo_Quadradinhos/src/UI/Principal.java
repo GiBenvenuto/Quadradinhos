@@ -6,7 +6,7 @@
 package UI;
 
 import Classes.Jogo;
-import java.awt.Color;
+import Classes.Quadradao;
 import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -309,79 +309,104 @@ public class Principal extends javax.swing.JFrame {
         ArrayList<Integer> trocas;
         int passos = Integer.parseInt(this.input_embaralhar.getText());
         trocas = this.jg.embaralhar(passos);
-        animacao(trocas);
+        for (Integer troca : trocas) {
+            animacao(troca);
+        }
     }//GEN-LAST:event_button_embaralharActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ArrayList<Integer> trocas = null;
+        
+        int cont;
+        String msg = "";
 
         if (this.jRadioButton1.isSelected()) {
             trocas = this.jg.resolverAleatorio();
-        }else if(this.jRadioButton2.isSelected()){
-            trocas = this.jg.heuristicaNivel1();
+            msg = "";
+
+        } else if (this.jRadioButton2.isSelected()) {
+            cont = this.jg.heuristicaNiveis(this.jg.getQ(), 1);
+            trocas = this.jg.getTrocas();
+            msg = "Foram realizadas " + cont + " iterações";
+           
+        } else if (this.jRadioButton3.isSelected()) {
+
+            cont = this.jg.heuristicaNiveis(this.jg.getQ(), 2);
+            trocas = this.jg.getTrocas();
+            msg = "Foram realizadas " + cont + " iterações";
+        }else if (this.jRadioButton4.isSelected()) {
+
+            cont = this.jg.heuristicaNiveis(this.jg.getQ(), 3);
+            trocas = this.jg.getTrocas();
+            msg = "Foram realizadas " + cont + " iterações";
         }
-        animacao(trocas);
-        JOptionPane.showMessageDialog(null, "Foram realizados " + trocas.size() + " passos");
+
+        for (Integer troca : trocas) {
+
+            animacao(troca);
+        }
+        msg += "\n A solução foi encontrada com " + trocas.size() + " passos";
+        JOptionPane.showMessageDialog(null, msg);
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void animacao(ArrayList<Integer> trocas) {
+    public void animacao(int trocas) {
 
         Point p;
-        for (Integer t : trocas) {
+        // this.wait(5);
+        switch ((trocas + 1)) {
 
-            switch ((t + 1)) {
+            case 1:
+                p = this.label1.getLocation();
+                this.label1.setLocation(this.label9.getLocation());
+                this.label9.setLocation(p);
+                break;
 
-                case 1:
-                    p = this.label1.getLocation();
-                    this.label1.setLocation(this.label9.getLocation());
-                    this.label9.setLocation(p);
-                    break;
+            case 2:
+                p = this.label2.getLocation();
+                this.label2.setLocation(this.label9.getLocation());
+                this.label9.setLocation(p);
+                break;
 
-                case 2:
-                    p = this.label2.getLocation();
-                    this.label2.setLocation(this.label9.getLocation());
-                    this.label9.setLocation(p);
-                    break;
+            case 3:
+                p = this.label3.getLocation();
+                this.label3.setLocation(this.label9.getLocation());
+                this.label9.setLocation(p);
+                break;
 
-                case 3:
-                    p = this.label3.getLocation();
-                    this.label3.setLocation(this.label9.getLocation());
-                    this.label9.setLocation(p);
-                    break;
+            case 4:
+                p = this.label4.getLocation();
+                this.label4.setLocation(this.label9.getLocation());
+                this.label9.setLocation(p);
+                break;
 
-                case 4:
-                    p = this.label4.getLocation();
-                    this.label4.setLocation(this.label9.getLocation());
-                    this.label9.setLocation(p);
-                    break;
+            case 5:
+                p = this.label5.getLocation();
+                this.label5.setLocation(this.label9.getLocation());
+                this.label9.setLocation(p);
+                break;
 
-                case 5:
-                    p = this.label5.getLocation();
-                    this.label5.setLocation(this.label9.getLocation());
-                    this.label9.setLocation(p);
-                    break;
+            case 6:
+                p = this.label6.getLocation();
+                this.label6.setLocation(this.label9.getLocation());
+                this.label9.setLocation(p);
+                break;
 
-                case 6:
-                    p = this.label6.getLocation();
-                    this.label6.setLocation(this.label9.getLocation());
-                    this.label9.setLocation(p);
-                    break;
+            case 7:
+                p = this.label7.getLocation();
+                this.label7.setLocation(this.label9.getLocation());
+                this.label9.setLocation(p);
+                break;
 
-                case 7:
-                    p = this.label7.getLocation();
-                    this.label7.setLocation(this.label9.getLocation());
-                    this.label9.setLocation(p);
-                    break;
+            case 8:
+                p = this.label8.getLocation();
+                this.label8.setLocation(this.label9.getLocation());
+                this.label9.setLocation(p);
+                break;
 
-                case 8:
-                    p = this.label8.getLocation();
-                    this.label8.setLocation(this.label9.getLocation());
-                    this.label9.setLocation(p);
-                    break;
+        }//switch
 
-            }//switch
-        }
     }
 
     /**
